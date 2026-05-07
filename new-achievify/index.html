@@ -1,0 +1,167 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Achievify - Elevate Your Productivity</title>
+    <link rel="stylesheet" href="style.css">
+    <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/@emailjs/browser@4/dist/email.min.js"></script>
+    <script src="script.js" defer></script>
+</head>
+<body>
+
+<div id="auth-container">
+        <canvas id="particle-canvas"></canvas>
+        <div class="auth-box">
+            <h1 class="auth-title">Achievify ✨</h1>
+            <div id="login-view">
+                <p>Welcome back. Log in to continue your journey.</p>
+                <form id="login-form">
+                    <input type="email" id="login-email" placeholder="Email Address" required>
+                    <input type="password" id="login-password" placeholder="Password" required>
+                    <button type="submit" class="auth-button">Login Securely</button>
+                </form>
+                <p class="auth-switch">No account? <a href="#" id="show-register-link">Register Here</a></p>
+            </div>
+            <div id="register-view" class="hidden">
+                <p>Create an account to start achieving your goals.</p>
+                <form     id="register-form">
+                    <input type="text" id="register-name" placeholder="Full Name" required>
+                    <input type="email" id="register-email" placeholder="Email Address" required>
+                    <input type="password" id="register-password" placeholder="Create a Strong Password" required>
+                    <button type="submit" class="auth-button">Create Account</button>
+                </form>
+                <p class="auth-switch">Already have an account? <a href="#" id="show-login-link">Login Here</a></p>
+            </div>
+            <p id="auth-error" class="error-message"></p>
+        </div>
+    </div>
+
+    <div id="app-container" class="hidden">
+        <header id="main-header">
+            <h1 class="logo">Achievify</h1>
+            <nav>
+                <ul class="nav-links">
+                    <li><a href="#" class="nav-link active" data-page="home-page">Home</a></li>
+                    <li><a href="#" class="nav-link" data-page="planner-page">Day Planner</a></li>
+                    <li><a href="#" class="nav-link" data-page="timetable-page">Timetable</a></li>
+                    <li><a href="#" class="nav-link" data-page="motivation-page">Motivation</a></li>
+                    <li><a href="#" class="nav-link" data-page="gallery-page">Gallery</a></li>
+                    <li><a href="#" class="nav-link" data-page="contact-page">Contact</a></li>
+                </ul>
+            </nav>
+            <button id="logout-button">Logout</button>
+        </header>
+
+        <main>
+            <section id="home-page" class="page active">
+                <div class="hero-section">
+                    <div class="hero-overlay"></div>
+                    <div class="hero-content">
+                        <h2 id="welcome-heading">Welcome, Student!</h2>
+                        <p>Your journey towards mastery begins with a single, focused day.</p>
+                        <button id="plan-day-cta" class="cta-button">Plan Your Day</button>
+                    </div>
+                </div>
+                <div class="stats-container">
+                    <h3>Your Progress at a Glance</h3>
+                    <div class="stats-grid">
+                        <div class="stat-card">
+                            <h4>Tasks Today</h4>
+                            <p id="tasks-today-stat">0</p>
+                        </div>
+                        <div class="stat-card">
+                            <h4>Tasks Completed</h4>
+                            <p id="tasks-completed-stat">0</p>
+                        </div>
+                        <div class="stat-card">
+                            <h4>Focus Streak</h4>
+                            <p>1 Day 🔥</p>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <section id="planner-page" class="page">
+                <h2>Day Planner</h2>
+                <div class="todo-app">
+                    <div class="todo-input-group">
+                        <input type="text" id="todo-input" placeholder="e.g., Review Calculus notes">
+                        <select id="todo-priority">
+                            <option value="low">Low Priority</option>
+                            <option value="medium">Medium Priority</option>
+                            <option value="high">High Priority</option>
+                        </select>
+                        <button id="add-task-button">Add Task</button>
+                    </div>
+                    <ul id="todo-list"></ul>
+                </div>
+            </section>
+
+            <section id="timetable-page" class="page">
+                <h2>My Timetable</h2>
+                <form id="timetable-form" class="content-form">
+                    <label for="timetable-file">Upload Timetable Image (PNG, JPG):</label>
+                    <input type="file" id="timetable-file" accept=".png, .jpg, .jpeg" required>
+                </form>
+                <div id="timetable-display-container">
+                    <img id="timetable-display" src="" alt="Your uploaded timetable will appear here.">
+                    <p id="timetable-placeholder">No timetable uploaded yet.</p>
+                </div>
+            </section>
+
+            <section id="motivation-page" class="page">
+                <h2>Motivation Hub</h2>
+                <div id="motivation-grid">
+                    </div>
+            </section>
+            
+            <section id="gallery-page" class="page">
+                <h2>Inspiration Gallery</h2>
+
+                <h3 class="gallery-subheading">Image Collection</h3>
+                <div class="masonry-grid" id="image-gallery-grid">
+                     </div>
+
+                <h3 class="gallery-subheading">Video Library</h3>
+                <div class="video-grid" id="video-gallery-grid">
+                    </div>
+            </section>
+
+            <section id="contact-page" class="page">
+                <h2>Get In Touch</h2>
+                <p>Have a question or feedback? We'd love to hear from you.</p>
+                <div class="contact-card">
+                    <div class="contact-info">
+                        <h3>Contact Information</h3>
+                        <p>Reach out via any of these channels.</p>
+                        <ul>
+                            <li>📧 contact@achievify.dev</li>
+                            <li>📍 Kattankulathur, Tamil Nadu</li>
+                            <li>🌐 achievify-app.com</li>
+                        </ul>
+                    </div>
+                    <form id="contact-form" class="content-form">
+                        <input type="hidden" name="contact_number">
+                        <div class="form-group">
+                            <label>Name</label>
+                            <input type="text" name="user_name" required>
+                        </div>
+                        <div class="form-group">
+                            <label>Email</label>
+                            <input type="email" name="user_email" required>
+                        </div>
+                        <div class="form-group">
+                            <label>Message</label>
+                            <textarea name="message" rows="5" required></textarea>
+                        </div>
+                        <button type="submit">Send Message</button>
+                        <p id="contact-form-status"></p>
+                    </form>
+                </div>
+            </section>
+        </main>
+        <footer id="main-footer"><p>&copy; 2025 Achievify. Engineered for excellence.</p></footer>
+    </div>
+</body>
+</html>
